@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My 3D Object</title>
+  <link href="rstyle.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>hi
+  <script src="./three.js-master/build/three.module.js"></script>
+  
+  <script type="module">
+    import * as THREE from '/three.js-master/build/three.module.js';
+    // Create a scene, camera, and renderer
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Load the glTF object
+    var loader = new THREE.GLTFLoader();
+    loader.load('wall.glb', function (gltf) {
+      var object = gltf.scene;
+      scene.add(object);
+    });
+
+    // Set camera position
+    camera.position.z = 5;
+
+    // Render the scene
+    function animate() {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+
+</html>
